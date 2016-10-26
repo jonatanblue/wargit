@@ -6,7 +6,9 @@
 #   Lists all your commits in all projects in the last week
 #   You project folders must structured per group (group1/project1)
 #
-#   Takes 1 argument: author
+#   Requires all the latest changes to be pulled first
+#
+#   Takes 1 argument: author (can be name, but use e-mail to be sure)
 #   Returns: project names and the author's commits in the past week
 #
 
