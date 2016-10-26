@@ -25,7 +25,7 @@ Your projects need to be organised in folders named after their groups. For exam
 ## Use
 
     $ cd ~/github.com
-    $ wargit
+    $ wargit your.email@example.com
     * ansible/ansible:
     new feature1
     added tests 
