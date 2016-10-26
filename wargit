@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# Authur: Jonatan Bjork
+#
+# wargit (Weekly Activity Report git)
+#   Lists all your commits in all projects in the last week
+#   You project folders must structured per group (group1/project1)
+#
+#   Takes 1 argument: author
+#   Returns: project names and the author's commits in the past week
+#
+
+author="${1}"
+
+# Get all full paths to all directories that are sub-directories
+# to the current directory
+project_paths=$(find $(pwd) -type d -depth 2)
+
+for full_path in ${project_paths}
+do
+  # Move to directory
+  cd "${full_path}"
+
+  # List all git commits in the past week
+  latest_commits=$(git log --author="${author}" --since "1 week ago" --format=%s 2>/dev/null) 
+
+  if [ "${latest_commits}" != "" ]
+  then
+    # Print name of project
+    project_name=$(basename ${PWD})
+    group_name=$(basename $(dirname ${PWD}))
+    echo "* ${group_name}/${project_name}:"
+    # Print commits
+    echo "${latest_commits}"
+    # Print delimiter
+    echo "---"
+  fi
+
+done
+
